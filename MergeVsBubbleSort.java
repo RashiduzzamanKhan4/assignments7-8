@@ -3,17 +3,15 @@ import java.util.*;
 
 public class MergeVsBubbleSort {
     
-    // Generate an array of random integers between 0 and 100
     public static int[] createRandomArray(int arrayLength) {
         Random random = new Random();
         int[] array = new int[arrayLength];
         for (int i = 0; i < arrayLength; i++) {
-            array[i] = random.nextInt(101); // Range 0-100
+            array[i] = random.nextInt(101);
         }
         return array;
     }
     
-    // Write an array to a file
     public static void writeArrayToFile(int[] array, String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             for (int num : array) {
@@ -24,7 +22,6 @@ public class MergeVsBubbleSort {
         }
     }
     
-    // Read an array from a file
     public static int[] readFileToArray(String filename) {
         List<Integer> list = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -38,7 +35,6 @@ public class MergeVsBubbleSort {
         return list.stream().mapToInt(i -> i).toArray();
     }
     
-    // Bubble Sort implementation
     public static void bubbleSort(int[] array) {
         int n = array.length;
         for (int i = 0; i < n - 1; i++) {
@@ -52,10 +48,9 @@ public class MergeVsBubbleSort {
         }
     }
 
-    // Merge Sort implementation
     public static void mergeSort(int[] array) {
         if (array.length < 2) {
-            return; // Base case: already sorted
+            return;
         }
         int mid = array.length / 2;
         int[] left = Arrays.copyOfRange(array, 0, mid);
@@ -66,7 +61,6 @@ public class MergeVsBubbleSort {
         merge(array, left, right);
     }
 
-    // Merge helper function for Merge Sort
     private static void merge(int[] array, int[] left, int[] right) {
         int i = 0, j = 0, k = 0;
         while (i < left.length && j < right.length) {
@@ -80,7 +74,6 @@ public class MergeVsBubbleSort {
         }
     }
 
-    // Main function to handle user input
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
@@ -92,13 +85,13 @@ public class MergeVsBubbleSort {
             System.out.print("Enter your choice: ");
             
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
             
             switch (choice) {
                 case 1:
                     System.out.print("Enter array length: ");
                     int length = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
+                    scanner.nextLine();
                     int[] randomArray = createRandomArray(length);
                     System.out.print("Enter filename to save: ");
                     String filename = scanner.nextLine();
@@ -113,7 +106,7 @@ public class MergeVsBubbleSort {
 
                     System.out.print("Choose sorting method (1 - Bubble Sort, 2 - Merge Sort): ");
                     int sortChoice = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
+                    scanner.nextLine();
 
                     long startTime = System.nanoTime();
                     if (sortChoice == 1) {
